@@ -90,7 +90,7 @@ class Program
         // Checks case sensitivity
         foreach (var key in mlbTeams.Keys)
         {
-            if (key.ToLower() == teamName)
+            if (key.ToLower() == teamName.ToLower())
             {
                 keyToUpdate = key;
                 break;
