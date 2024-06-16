@@ -32,11 +32,36 @@ class Program
         }
     }
 
+    // Capitalizes the first letter of each word
+    static string CapitalizeFormat(string input)
+    {
+
+        char[] charArray = input.ToLower().ToCharArray();
+        bool isNewWord = true;
+
+        for (int i = 0; i < charArray.Length; i++)
+        {
+            if (isNewWord && char.IsLetter(charArray[i]))
+            {
+                charArray[i] = char.ToUpper(charArray[i]);
+                isNewWord = false;
+            }
+            else if (charArray[i] == ' ')
+            {
+                isNewWord = true;
+            }
+        }
+
+        return new string(charArray);
+    }
+
     // Method to insert a new MLB team and its details
    static void AddNewTeam()
     {
         Console.WriteLine("What is the name of the team?");
         String teamName = Console.ReadLine();
+
+        teamName = CapitalizeFormat(teamName);
 
         // Checks to see if the team name is already in the dictionary
         if (mlbTeams.ContainsKey(teamName))
@@ -46,9 +71,12 @@ class Program
         }
         Console.WriteLine("What is the stadium of the team?");
         String teamStadium = Console.ReadLine();
+        teamStadium = CapitalizeFormat(teamStadium);
         Console.WriteLine("What are two players on the team?");
         String player1 = Console.ReadLine();
+        player1 = CapitalizeFormat(player1);
         String player2 = Console.ReadLine();
+        player2 = CapitalizeFormat(player2);
         mlbTeams[teamName] = new List<string> {teamStadium, player1, player2};
     }
 
@@ -165,4 +193,3 @@ class Program
         }
     }
 }
-
